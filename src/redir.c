@@ -61,10 +61,6 @@
 #define EWOULDBLOCK EAGAIN
 #endif
 
-#ifndef SOCKET_BUF_SIZE
-#define SOCKET_BUF_SIZE 2048
-#endif
-
 #ifndef IP6T_SO_ORIGINAL_DST
 #define IP6T_SO_ORIGINAL_DST 80
 #endif
@@ -93,9 +89,9 @@ static int mode      = TCP_ONLY;
 #ifdef HAVE_SETRLIMIT
 static int nofile = 0;
 #endif
-       int fast_open = 0;
-static int no_delay  = 0;
-static int ret_val   = 0;
+int fast_open       = 0;
+static int no_delay = 0;
+static int ret_val  = 0;
 
 static struct ev_signal sigint_watcher;
 static struct ev_signal sigterm_watcher;
@@ -874,7 +870,7 @@ main(int argc, char **argv)
         { "password",    required_argument, NULL, GETOPT_VAL_PASSWORD    },
         { "key",         required_argument, NULL, GETOPT_VAL_KEY         },
         { "help",        no_argument,       NULL, GETOPT_VAL_HELP        },
-        { NULL,                          0, NULL,                      0 }
+        { NULL,          0,                 NULL, 0                      }
     };
 
     opterr = 0;
